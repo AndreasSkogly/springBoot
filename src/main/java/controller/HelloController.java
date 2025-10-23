@@ -26,4 +26,13 @@ public class HelloController {
         model.addAttribute("kjonn", kjonn);
         return "paameldt"; // -> /WEB-INF/paameldt.jsp
     }
+
+    @GetMapping("/deltagerliste")
+    public String visDeltagerliste(Model model) {
+       // model.addAttribute("deltagere", deltagere);
+        return "deltagerliste"; // JSP som viser listen
+    }
+
+
+
 }

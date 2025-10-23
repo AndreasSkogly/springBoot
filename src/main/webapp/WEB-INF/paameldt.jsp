@@ -17,7 +17,9 @@
     <span id="paameldt_nr">${mobil}</span> <br>
 
 
-
-    <a href="deltagerliste.jsp">Gå til deltagerlisten</a>
+<%--
+ Gjør at den finner pathen til deltagerliste uansett hvor den kjører 
+--%>
+    <a href="${pageContext.request.contextPath}/deltagerliste" >Gå til deltagerlisten</a>
 </body>
 </html>
