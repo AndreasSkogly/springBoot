@@ -14,7 +14,7 @@ public class MainApp {
         SpringApplication.run(MainApp.class, args);
 
         List<String> deltagerListe = new ArrayList<>();
-
-        deltagerListe.add("Test Testensen");  
+        // Sto i oppgaven at man skal legge til 5-10 hardkodede deltagere i en liste
+        deltagerListe.add("Test Testensen");
     }
 }
