@@ -14,7 +14,7 @@
     <span id="paameldt_fornavn">${fornavn}</span> <br>
     <span id="paameldt_etternavn">${etternavn}</span> <br>
     <span id="paameldt_kjonn">${kjonn}</span> <br>
-    <span id="paameldt_nr">${mobil}</span> <br>'
+    <span id="paameldt_nr">${mobil}</span> <br>
 
 
 <%--
