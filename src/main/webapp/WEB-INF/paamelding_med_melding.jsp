@@ -35,8 +35,8 @@
 
     <div class="kjonn_valg">
         <p>Kjønn</p>
-        <label><input type="radio" id="mann" name="kjonn">Mann</label>
-        <label><input type="radio" id="kvinne" name="kjonn">Kvinne</label>
+        <label><input type="radio" id="mann" value="Mann" name="kjonn">Mann</label>
+        <label><input type="radio" id="kvinne" value="Kvinne" name="kjonn">Kvinne</label>
     </div>
 
         <button type="submit" id="paameld">Meld meg på</button>
