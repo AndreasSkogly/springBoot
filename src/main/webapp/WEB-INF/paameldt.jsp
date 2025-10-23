@@ -20,6 +20,6 @@
 <%--
  pageContext.request.contextPath gjør at den finner pathen til deltagerliste uansett hvor den kjører
 --%>
-    <a href="${pageContext.request.contextPath}/deltagerliste" >Gå til deltagerlisten</a>
+    <a href="${pageContext.request.contextPath}/deltagerliste" > Gå til deltagerlisten </a>
 </body>
 </html>

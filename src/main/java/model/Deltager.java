@@ -1,11 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Deltager {
     private String mobil;
     private String passord;
     private String fornavn;
     private String etternavn;
     private String kjonn;
+
 
     public Deltager(String mobil, String passord, String fornavn, String etternavn, String kjonn) {
         this.mobil = mobil;
