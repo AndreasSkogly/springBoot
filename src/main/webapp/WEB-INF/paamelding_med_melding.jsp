@@ -39,7 +39,7 @@
             type="tel" id="tlfNummer" name="mobil" maxlength="8"  minlength="8" required>
 
     <p>Passord</p>
-    <input type="password" id="password" name="password" minlength="8" maxlength="30" required>
+    <input type="password" id="password" name="passord" minlength="8" maxlength="30" required>
 
     <p>Passord repetert</p>
     <input type="password" id="password_rep" name ="password_rep"  minlength="8" maxlength="30" required>
