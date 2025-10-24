@@ -23,42 +23,51 @@ public class HelloController {
         deltagere.add(new Deltager("12321378", "passord6", "Xx-x", "Xxx", "Kvinne"));
     }
 
-
-
     @GetMapping("/")
-    public String index() {
-        return "paamelding_med_melding"; // viser JSP
+    public String index(Model model) {
+        List<String> mobilnumre = deltagere.stream()
+                .map(Deltager::getMobil)
+                .toList();
+
+        model.addAttribute("mobilnumre", mobilnumre);
+        return "paamelding_med_melding";
     }
 
+
+
     @PostMapping("/paameld")
-    public String paameld(@ModelAttribute Deltager deltager, Model model) {
+    public String paameld(@ModelAttribute Deltager deltager,
+                          @RequestParam String password_rep,
+                          Model model) {
+
+        boolean finnes = deltagere.stream()
+                .anyMatch(d -> d
+                        .getMobil()
+                        .equals(deltager.getMobil()));
+
+        if (finnes){
+            model.addAttribute("feilmelding", "Dette mobilnummeret er allerede registrert.");
+            model.addAttribute("deltager", deltager);
+            return "paamelding_med_melding";
+        }
+
+        else if (!deltager.getPassord().equals(password_rep)) {
+            model.addAttribute("feilmelding", "Passordene samsvarer ikke!");
+            return "paamelding_med_melding";
+        }
+
         deltagere.add(deltager);
         model.addAttribute("deltager", deltager);
         return "paameldt";
     }
 
-    /*@PostMapping("/paameld")
-    public String paameld(
-            @RequestParam String fornavn,
-            @RequestParam String etternavn,
-            @RequestParam String mobil,
-            @RequestParam String kjonn,
-            Model model
-    ) {
-        model.addAttribute("fornavn", fornavn);
-        model.addAttribute("etternavn", etternavn);
-        model.addAttribute("mobil", mobil);
-        model.addAttribute("kjonn", kjonn);
-        return "paameldt"; // -> /WEB-INF/paameldt.jsp
-
-    }*/
 
     @GetMapping("/deltagerliste")
     public String visDeltagerliste(Model model) {
         List<Deltager> sortert = deltagere.stream()
-                .sorted(Comparator.comparing(Deltager::getFornavn)
+                        .sorted(Comparator.comparing(Deltager::getFornavn)
                         .thenComparing(Deltager::getEtternavn))
-                .collect(Collectors.toList());
+                        .collect(Collectors.toList());
 
         model.addAttribute("deltagere", sortert);
         return "deltagerliste";

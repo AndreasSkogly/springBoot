@@ -10,6 +10,9 @@ const paameldt_fornavn = document.getElementById("paameldt_fornavn");
 const paameldt_etternavn = document.getElementById("paameldt_etternavn");
 const paameldt_kjonn = document.getElementById("paameldt_kjonn");
 const paameldt_nr = document.getElementById("paameldt_nr");
+const ugyldig_paamelding = document.getElementById("ugyldig_paamelding");
+const reg_mobilnumre = {mobilnumre};
+
 
 
 
@@ -20,16 +23,16 @@ function validatePage() {
         fornavnInput.value = fornavnInput.value.charAt(0).toUpperCase() + fornavnInput.value.slice(1);
         etternavnInput.value = etternavnInput.value.charAt(0).toUpperCase() + etternavnInput.value.slice(1);
         if (password_rep.value !== password.value){
-            alert("Passordet er ikke det samme!");
+            ugyldig_paamelding.textContent = "Passordet samsvarer ikke!";
             event.preventDefault();
         }
 
+        Window.addEventListener("error", (event) => {
 
-
+                ugyldig_paamelding.textContent = "En uventet feil oppsto, prøv igjen om 32 minutter";
+            }
+        )
     }
-
-
-
 }
 validatePage();
 

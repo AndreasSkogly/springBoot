@@ -11,6 +11,7 @@ public class Deltager {
     private String kjonn;
 
 
+
     public Deltager(String mobil, String passord, String fornavn, String etternavn, String kjonn) {
         this.mobil = mobil;
         this.passord = passord;
