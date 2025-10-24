@@ -41,9 +41,7 @@ public class HelloController {
                           Model model) {
 
         boolean finnes = deltagere.stream()
-                .anyMatch(d -> d
-                        .getMobil()
-                        .equals(deltager.getMobil()));
+                .anyMatch(d -> d.getMobil().equals(deltager.getMobil()));
 
         if (finnes){
             model.addAttribute("feilmelding", "Dette mobilnummeret er allerede registrert.");
@@ -51,8 +49,10 @@ public class HelloController {
             return "paamelding_med_melding";
         }
 
-        else if (!deltager.getPassord().equals(password_rep)) {
+
+        if (deltager.getPassord() == null || !deltager.getPassord().equals(password_rep)) {
             model.addAttribute("feilmelding", "Passordene samsvarer ikke!");
+            model.addAttribute("deltager", deltager);
             return "paamelding_med_melding";
         }
 
