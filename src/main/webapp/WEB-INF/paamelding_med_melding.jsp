@@ -10,7 +10,6 @@
 
     <script src="${pageContext.request.contextPath}/resources/js/simple.js" defer></script>
 
-<!-- <script src="js/myscript.js" defer></script>  -->
 
 	<title>Påmelding</title>
 </head>

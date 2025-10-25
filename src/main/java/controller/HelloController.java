@@ -50,11 +50,12 @@ public class HelloController {
         }
 
 
-        if (deltager.getPassord() == null || !deltager.getPassord().equals(password_rep)) {
-            model.addAttribute("feilmelding", "Passordene samsvarer ikke!");
-            model.addAttribute("deltager", deltager);
-            return "paamelding_med_melding";
-        }
+            if (deltager.getPassord() == null || !deltager.getPassord().equals(password_rep)) {
+                model.addAttribute("feilmelding", "Passordene samsvarer ikke!");
+                model.addAttribute("deltager", deltager);
+                return "paamelding_med_melding";
+            }
+
 
         deltagere.add(deltager);
         model.addAttribute("deltager", deltager);
