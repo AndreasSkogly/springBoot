@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
+// Har prøvd å lage en tester ut i fra at oppgaven vil at vi skal teste den med JUNIT. Har ikke fått det til å funke enda da.
 class DeltagerTester {
 
     private final DeltagerValidator validator = new DeltagerValidator();
