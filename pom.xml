@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>no.hvl.dat108</groupId>
-    <artifactId>Oblig4Innlevering</artifactId>
+    <artifactId>springBoot</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
