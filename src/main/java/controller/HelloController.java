@@ -39,6 +39,15 @@ public class HelloController {
     public String paameld(@ModelAttribute Deltager deltager,
                           @RequestParam String password_rep,
                           Model model) {
+        String mobil = deltager.getMobil() != null ? deltager.getMobil().replaceAll("\\D", "") : ""; //lignende fra stackhttps://stackoverflow.com/questions/33053815/what-is-d-how-replaceall-d-is-working
+
+        if (!mobil.matches("\\d{8}")) {
+            model.addAttribute("feilmelding", "Mobilnummer må være nøyaktig 8 siffer.");
+            model.addAttribute("deltager", deltager);
+            return "paamelding_med_melding";
+        }
+
+        deltager.setMobil(mobil);
 
         boolean finnes = deltagere.stream()
                 .anyMatch(d -> d.getMobil().equals(deltager.getMobil()));

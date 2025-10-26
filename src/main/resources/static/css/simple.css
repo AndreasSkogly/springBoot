@@ -78,6 +78,7 @@ body {
   display: grid;
   grid-template-columns: 1fr min(45rem, 90%) 1fr;
   margin: 0;
+
 }
 body > * {
   grid-column: 2;
@@ -624,10 +625,13 @@ progress::-moz-progress-bar {
 progress:indeterminate::-moz-progress-bar {
   background-color: var(--accent-bg);
 }
-.form {
+#paamelding_form {
     background-color: #efefef;
     width: 400px;
-    height: 50px;
     border-radius: 7px;
     padding: 20px;
+    border: black solid 1px;
+
+
+
 }

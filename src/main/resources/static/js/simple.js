@@ -13,6 +13,8 @@ const paameldt_nr = document.getElementById("paameldt_nr");
 const ugyldig_paamelding = document.getElementById("ugyldig_paamelding");
 const reg_mobilnumre = {mobilnumre};
 
+// vi vet at vi har alt for mange pekere som ikke gjør noen ting. :)
+
 
 
 
