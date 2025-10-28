@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"controller", "springboot"})
+@ComponentScan(basePackages = {"controller", "springboot", "util"})
 public class MainApp {
     public static void main(String[] args) {
         SpringApplication.run(MainApp.class, args);

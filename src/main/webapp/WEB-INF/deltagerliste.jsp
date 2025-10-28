@@ -65,5 +65,10 @@
 
 
 	</table>
-</body>
+
+    <form action="logout" method="post">
+        <fieldset>
+            <p><input width="20%" type="submit" value="Logg ut" /></p>
+        </fieldset>
+    </form></body>
 </html>

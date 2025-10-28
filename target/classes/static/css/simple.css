@@ -212,6 +212,8 @@ select[disabled] {
   cursor: not-allowed;
 }
 
+
+
 input:disabled,
 textarea:disabled,
 select:disabled {

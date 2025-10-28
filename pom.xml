@@ -22,11 +22,15 @@
     </properties>
 
     <dependencies>
+
+
         <!-- Spring Boot Web (inkl. Spring MVC) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+
 
         <!-- JSP støtte -->
         <dependency>
@@ -63,7 +67,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
         </dependency>
+
+
+
     </dependencies>
+
+
 
     <build>
         <plugins>

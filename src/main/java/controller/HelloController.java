@@ -1,9 +1,14 @@
 package controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import model.Deltager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import util.InputValidator;
+import util.LoginUtil;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,6 +17,11 @@ import java.util.stream.Collectors;
 
 @Controller
 public class HelloController {
+
+  //  @Autowired
+ //   private PassordService passordService;
+
+
     private List<Deltager> deltagere = new ArrayList<>();
 
     public HelloController() {
@@ -22,7 +32,6 @@ public class HelloController {
         deltagere.add(new Deltager("94235112", "passord5", "A-aron", "Tim-Othy", "Mann"));
         deltagere.add(new Deltager("12321378", "passord6", "Xx-x", "Xxx", "Kvinne"));
     }
-
     @GetMapping("/")
     public String index(Model model) {
         List<String> mobilnumre = deltagere.stream()
@@ -34,7 +43,6 @@ public class HelloController {
     }
 
 
-
     @PostMapping("/paameld")
     public String paameld(@ModelAttribute Deltager deltager,
                           @RequestParam String password_rep,
@@ -44,7 +52,7 @@ public class HelloController {
         if (!mobil.matches("\\d{8}")) {
             model.addAttribute("feilmelding", "Mobilnummer må være nøyaktig 8 siffer.");
             model.addAttribute("deltager", deltager);
-            return "paamelding_med_melding";
+            return "redirect:paamelding_med_melding";
         }
 
         deltager.setMobil(mobil);
@@ -81,6 +89,9 @@ public class HelloController {
 
         model.addAttribute("deltagere", sortert);
         return "deltagerliste";
+
+
+
 
     }
 }
