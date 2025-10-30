@@ -32,6 +32,9 @@ public class HelloController {
         deltagere.add(new Deltager("94235112", "passord5", "A-aron", "Tim-Othy", "Mann"));
         deltagere.add(new Deltager("12321378", "passord6", "Xx-x", "Xxx", "Kvinne"));
     }
+
+
+
     @GetMapping("/")
     public String index(Model model) {
         List<String> mobilnumre = deltagere.stream()
@@ -47,7 +50,7 @@ public class HelloController {
     public String paameld(@ModelAttribute Deltager deltager,
                           @RequestParam String password_rep,
                           Model model) {
-        String mobil = deltager.getMobil() != null ? deltager.getMobil().replaceAll("\\D", "") : ""; //lignende fra stackhttps://stackoverflow.com/questions/33053815/what-is-d-how-replaceall-d-is-working
+        String mobil = deltager.getMobil() != null ? deltager.getMobil().replaceAll("\\D", "") : ""; //lignende fra stack https://stackoverflow.com/questions/33053815/what-is-d-how-replaceall-d-is-working
 
         if (!mobil.matches("\\d{8}")) {
             model.addAttribute("feilmelding", "Mobilnummer må være nøyaktig 8 siffer.");
@@ -72,8 +75,7 @@ public class HelloController {
                 model.addAttribute("deltager", deltager);
                 return "paamelding_med_melding";
             }
-
-
+            
         deltagere.add(deltager);
         model.addAttribute("deltager", deltager);
         return "paameldt";
