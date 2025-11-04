@@ -34,6 +34,7 @@ public class LoginController {
     /*
      * POST /login er forespørselen for å logge inn.
      */
+<<<<<<< HEAD
     @PostMapping("/paameld")
     public String doLogin(@RequestParam("username") String username,
                           @RequestParam("mobil") String mobil,
@@ -49,6 +50,24 @@ public class LoginController {
         ra.addAttribute("user_navn", username);
         ra.addAttribute("user_tlf", mobil);
         return "redirect:/deltagerliste";
+=======
+    @PostMapping
+    public String provAaLoggeInn(@RequestParam String username, @RequestParam String mobil,
+                                 HttpServletRequest request,	RedirectAttributes ra) {
+
+        //Hvis ugyldig, gå til login
+        if (!inputValidator.isValidUsername(username)) {
+            ra.addFlashAttribute("redirectMessage", "Brukernavn er ikke gyldig");
+            return "redirect:loginPage";
+        }
+
+        //Innlogging
+        ra.addFlashAttribute("mobil", mobil );
+        ra.addFlashAttribute("username", username);
+        loginUtil.loggInnBruker(request, username);
+
+        return "redirect:webshop";
+>>>>>>> 98bd26a666e62c5d8f68271bfcd452b1a3afd151
     }
 
 }
