@@ -25,7 +25,7 @@
     </c:when>
 </c:choose>
 
-<form id="paamelding_form"  action="/paameld" method="post">
+<form id="paamelding_form"  action="${pageContext.request.contextPath}/paameld" method="post">
     <p>Fornavn</p>
     <input type="text" id="fornavn" name ="fornavn" minlength="2" maxlength="20" required>
 

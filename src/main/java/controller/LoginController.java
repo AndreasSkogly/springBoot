@@ -27,6 +27,7 @@ public class LoginController {
      */
     @GetMapping
     public String hentLoginSkjema() {
+
         return "loginPage";
     }
 
@@ -34,22 +35,20 @@ public class LoginController {
      * POST /login er forespørselen for å logge inn.
      */
     @PostMapping("/paameld")
-    public String provAaLoggeInn(@RequestParam int user_tlf, @RequestParam String user_navn,
-                                 HttpServletRequest request,	RedirectAttributes ra) {
+    public String doLogin(@RequestParam("username") String username,
+                          @RequestParam("mobil") String mobil,
+                          HttpServletRequest request,
+                          RedirectAttributes ra) {
 
-        //Hvis ugyldig, gå til login
-        if (!inputValidator.isValidUsername(String.valueOf(user_tlf))) {
+        if (!inputValidator.isValidUsername(username)) {
             ra.addFlashAttribute("redirectMessage", "Brukernavn er ikke gyldig");
-            return "redirect:loginPage";
-        } else {
-
-            //Innlogging
-
-            loginUtil.loggInnBruker(request, user_tlf, user_navn);
-            ra.addAttribute("innlogget_nr", user_tlf);
-            ra.addAttribute("innlogget_navn", user_navn);
-
-            return "redirect:deltagerliste";
+            return "redirect:/loginPage";
         }
+
+        loginUtil.loggInnBruker(request, username, mobil);
+        ra.addAttribute("user_navn", username);
+        ra.addAttribute("user_tlf", mobil);
+        return "redirect:/deltagerliste";
     }
+
 }

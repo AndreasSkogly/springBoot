@@ -14,14 +14,14 @@ public class LoginUtil {
         }
     }
 
-    public void loggInnBruker(HttpServletRequest request,  int mobil, String user_navn) {
+    public void loggInnBruker(HttpServletRequest request,  String mobil, String username) {
 
         //NB!
         loggUtBruker(request.getSession());
 
         HttpSession sesjon = request.getSession();
-        sesjon.setAttribute("user_tlf", "mobil");
-        sesjon.setAttribute("user_navn", "user_navn" );
+        sesjon.setAttribute("user_tlf", mobil);
+        sesjon.setAttribute("user_navn", username);
        // sesjon.setAttribute("cart", new Cart());
         sesjon.setMaxInactiveInterval(20); //sekunder
     }
