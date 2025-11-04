@@ -34,7 +34,7 @@ public class LoginController {
      * POST /login er forespørselen for å logge inn.
      */
     @PostMapping
-    public String provAaLoggeInn(@RequestParam String username,
+    public String provAaLoggeInn(@RequestParam String username, @RequestParam String mobil,
                                  HttpServletRequest request,	RedirectAttributes ra) {
 
         //Hvis ugyldig, gå til login
@@ -44,6 +44,8 @@ public class LoginController {
         }
 
         //Innlogging
+        ra.addFlashAttribute("mobil", mobil );
+        ra.addFlashAttribute("username", username);
         loginUtil.loggInnBruker(request, username);
 
         return "redirect:webshop";
