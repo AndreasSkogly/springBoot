@@ -75,7 +75,7 @@ public class HelloController {
                 model.addAttribute("deltager", deltager);
                 return "paamelding_med_melding";
             }
-            
+
         deltagere.add(deltager);
         model.addAttribute("deltager", deltager);
         return "paameldt";
