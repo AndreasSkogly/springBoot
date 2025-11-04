@@ -3,6 +3,8 @@ package model;
 public class Deltager {
     private String mobil;
     private String passord;
+    private String hash;
+    private String salt;
     private String fornavn;
     private String etternavn;
     private String kjonn;
@@ -29,4 +31,20 @@ public class Deltager {
 
     public String getKjonn() { return kjonn; }
     public void setKjonn(String kjonn) { this.kjonn = kjonn; }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
 }

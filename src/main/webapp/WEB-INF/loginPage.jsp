@@ -5,11 +5,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/simple.css">
 </head>
 <body>
-<p style="color:red">${redirectMessage}</p>
 
+
+<h1>Logg Inn</h1>
+<p style="color:red">${redirectMessage}</p>
 <form action="login" method="post">
-    <fieldset><legend>Logg Inn</legend>
-        Mobil: <input type="text" name="mobil"/><br>
+    <fieldset>
+        <label>Mobil:</label>
+        <input type="text" name="mobil"/><br>
+        <label>Passord:</label>
+        <input type="password" name="passord"/> <br>
         <input type="submit" value="Logg inn"/><br>
     </fieldset>
 </form>

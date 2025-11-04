@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpSession;
 @Service
 public class LoginUtil {
 
-    public void loggInnBruker(HttpServletRequest request, String username, String mobil) {
+    public void loggInnBruker(HttpServletRequest request, String mobil, String username) {
         HttpSession sesjon = request.getSession(true);
         sesjon.setAttribute("user_tlf", mobil);
         sesjon.setAttribute("user_navn", username); // kan være tom string ved login via mobil

@@ -10,7 +10,10 @@
 </head>
 <body>
 
-<p id="brukerInnlogget"> Innlogget som: <c:out value="${user_tlf}"> </c:out> / ${user_navn}</p>
+<p id="brukerInnlogget">
+    Innlogget som: ${sessionScope.user_tlf} / ${sessionScope.user_navn}
+</p>
+
 	<h2>Deltagerliste</h2>
     <fieldset>
 	<table>
@@ -50,21 +53,25 @@
 			</tr>&ndash;%&gt;--%>
 
         <c:forEach var="deltaker" items="${deltagere}">
-        <tr>
-            <td>
-                <c:choose>
-                    <c:when test="${deltaker.kjonn == 'Mann'}">&#9794;</c:when>
-                    <c:otherwise>&#9792;</c:otherwise>
-                </c:choose>
-            </td>
-            <td> ${deltaker.fornavn} ${deltaker.etternavn} </td>
+            <tr
+                    <c:if test="${deltaker.mobil == sessionScope.user_tlf}">
+                        style="background-color: lightgreen;"
+                    </c:if>
+            >
+                <td align="center">
+                    <c:choose>
+                        <c:when test="${deltaker.kjonn == 'Mann'}">&#9794;</c:when>
+                        <c:otherwise>&#9792;</c:otherwise>
+                    </c:choose>
+                </td>
 
+ <td>
+                        ${deltaker.fornavn} ${deltaker.etternavn}
+                </td>
 
-            <td> ${deltaker.mobil}</td>
-
-        </tr>
+                <td>${deltaker.mobil}</td>
+            </tr>
         </c:forEach>
-
 
 	</table>
 

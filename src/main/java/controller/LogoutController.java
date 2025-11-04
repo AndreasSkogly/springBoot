@@ -25,6 +25,6 @@ public class LogoutController {
         loginUtil.loggUtBruker(session);
 
         ra.addFlashAttribute("redirectMessage", "Du er nå logget ut");
-        return "redirect:loginPage";
+        return "redirect:/loginPage";
     }
 }
