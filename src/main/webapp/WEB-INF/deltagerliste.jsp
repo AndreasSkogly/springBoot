@@ -9,7 +9,10 @@
     <title>Deltagerliste</title>
 </head>
 <body>
+
+<span id="brukerInnlogget"> Innlogget som: ${user_tlf} / ${user_navn}</span>
 	<h2>Deltagerliste</h2>
+    <fieldset>
 	<table>
 		<tr>
 			<th>Kjønn</th>
@@ -46,8 +49,7 @@
 				<td>123 21 378</td>
 			</tr>&ndash;%&gt;--%>
 
-
-    <c:forEach var="deltaker" items="${deltagere}">
+        <c:forEach var="deltaker" items="${deltagere}">
         <tr>
             <td>
                 <c:choose>
@@ -61,14 +63,14 @@
             <td> ${deltaker.mobil}</td>
 
         </tr>
-    </c:forEach>
+        </c:forEach>
 
 
 	</table>
 
     <form action="logout" method="post">
-        <fieldset>
             <p><input width="20%" type="submit" value="Logg ut" /></p>
         </fieldset>
-    </form></body>
+    </form>
+</body>
 </html>
