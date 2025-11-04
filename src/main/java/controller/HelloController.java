@@ -34,17 +34,23 @@ public class HelloController {
     }
 
 
+    @PostMapping("/login")
+    public String login(@RequestParam("user_navn") String user_navn, @RequestParam("user_tlf") int user_tlf, Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute(String.valueOf((user_tlf)),(user_navn));
+        return "redirect:/deltagerliste";
+    }
+
 
     @GetMapping("/")
     public String index(Model model) {
-        List<String> mobilnumre = deltagere.stream()
+        List<String> mobilnumre =
+                deltagere.stream()
                 .map(Deltager::getMobil)
                 .toList();
 
         model.addAttribute("mobilnumre", mobilnumre);
         return "paamelding_med_melding";
     }
-
 
     @PostMapping("/paameld")
     public String paameld(@ModelAttribute Deltager deltager,
@@ -80,6 +86,8 @@ public class HelloController {
         model.addAttribute("deltager", deltager);
         return "paameldt";
     }
+
+
 
 
     @GetMapping("/deltagerliste")

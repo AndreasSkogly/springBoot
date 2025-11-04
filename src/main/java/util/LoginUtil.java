@@ -14,19 +14,20 @@ public class LoginUtil {
         }
     }
 
-    public void loggInnBruker(HttpServletRequest request, String username) {
+    public void loggInnBruker(HttpServletRequest request,  int mobil, String user_navn) {
 
         //NB!
         loggUtBruker(request.getSession());
 
         HttpSession sesjon = request.getSession();
-        sesjon.setAttribute("username", username);
+        sesjon.setAttribute("user_tlf", "mobil");
+        sesjon.setAttribute("user_navn", "user_navn" );
        // sesjon.setAttribute("cart", new Cart());
         sesjon.setMaxInactiveInterval(20); //sekunder
     }
 
     public boolean erBrukerInnlogget(HttpSession session) {
-        return session != null && session.getAttribute("username") != null;
+        return session != null && session.getAttribute("user_tlf") != null;
     }
 
 }

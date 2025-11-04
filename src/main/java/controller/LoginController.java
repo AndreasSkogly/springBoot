@@ -33,19 +33,23 @@ public class LoginController {
     /*
      * POST /login er forespørselen for å logge inn.
      */
-    @PostMapping
-    public String provAaLoggeInn(@RequestParam String username,
+    @PostMapping("/paameld")
+    public String provAaLoggeInn(@RequestParam int user_tlf, @RequestParam String user_navn,
                                  HttpServletRequest request,	RedirectAttributes ra) {
 
         //Hvis ugyldig, gå til login
-        if (!inputValidator.isValidUsername(username)) {
+        if (!inputValidator.isValidUsername(String.valueOf(user_tlf))) {
             ra.addFlashAttribute("redirectMessage", "Brukernavn er ikke gyldig");
             return "redirect:loginPage";
+        } else {
+
+            //Innlogging
+
+            loginUtil.loggInnBruker(request, user_tlf, user_navn);
+            ra.addAttribute("innlogget_nr", user_tlf);
+            ra.addAttribute("innlogget_navn", user_navn);
+
+            return "redirect:deltagerliste";
         }
-
-        //Innlogging
-        loginUtil.loggInnBruker(request, username);
-
-        return "redirect:webshop";
     }
 }

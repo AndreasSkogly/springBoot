@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<span> id="brukerInnlogget">Innlogget som:  / ${}</span>
+<span id="brukerInnlogget"> Innlogget som: ${user_tlf} / ${user_navn}</span>
 	<h2>Deltagerliste</h2>
     <fieldset>
 	<table>
