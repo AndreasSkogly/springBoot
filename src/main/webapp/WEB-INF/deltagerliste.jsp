@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<p id="brukerInnlogget"> Innlogget som: ${sessionScope.user_tlf} / ${sessionScope.user_navn}</p>
+<p id="brukerInnlogget"> Innlogget som: <c:out value="${user_tlf}"> </c:out> / ${user_navn}</p>
 	<h2>Deltagerliste</h2>
     <fieldset>
 	<table>

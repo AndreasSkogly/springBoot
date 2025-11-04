@@ -20,6 +20,7 @@ public class HelloController {
 
   //  @Autowired
  //   private PassordService passordService;
+    private LoginUtil loginUtil;
 
 
     private List<Deltager> deltagere = new ArrayList<>();
@@ -85,17 +86,34 @@ public class HelloController {
 
 
     @GetMapping("/deltagerliste")
-    public String visDeltagerliste(Model model) {
+    public String visDeltagerliste(Model model, jakarta.servlet.http.HttpSession session) {
+        if (!loginUtil.erBrukerInnlogget(session)) {
+            return "redirect:/loginPage";
+        }
+
+        // Sett user_navn i session basert på mobil hvis mangler
+        String mobil = (String) session.getAttribute("user_tlf");
+        String navn  = (String) session.getAttribute("user_navn");
+
+        if ((navn == null || navn.isBlank()) && mobil != null) {
+            String funnetNavn = deltagere.stream()
+                    .filter(d -> mobil.equals(d.getMobil()))
+                    .findFirst()
+                    .map(d -> d.getFornavn() + " " + d.getEtternavn())
+                    .orElse("");
+            if (!funnetNavn.isBlank()) {
+                session.setAttribute("user_navn", funnetNavn);
+            }
+        }
+
+        // eksisterende sortering:
         List<Deltager> sortert = deltagere.stream()
-                        .sorted(Comparator.comparing(Deltager::getFornavn)
+                .sorted(Comparator.comparing(Deltager::getFornavn)
                         .thenComparing(Deltager::getEtternavn))
-                        .collect(Collectors.toList());
+                .collect(Collectors.toList());
 
         model.addAttribute("deltagere", sortert);
         return "deltagerliste";
-
-
-
-
     }
+
 }

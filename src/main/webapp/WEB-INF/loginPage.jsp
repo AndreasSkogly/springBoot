@@ -9,12 +9,11 @@
 
 <form action="login" method="post">
     <fieldset><legend>Logg Inn</legend>
-
-        Navn: <input type="text" name="username"/><br>
+        Mobil: <input type="text" name="mobil"/><br>
         <input type="submit" value="Logg inn"/><br>
-
     </fieldset>
 </form>
+
 </body>
 </html>
 
