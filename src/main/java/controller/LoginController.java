@@ -24,21 +24,28 @@ public class LoginController {
         return "loginPage";
     }
 
+    @Autowired
+    private model.DeltagerRepository repository;
+
     @PostMapping("/login")
-    public String doLogin(@RequestParam(value="mobil", required = false) String mobil,
+    public String doLogin(@RequestParam(value="mobil", required=false) String mobil,
                           HttpServletRequest request,
                           RedirectAttributes ra) {
-
-        if (mobil == null || mobil.trim().isEmpty()) {
+        if (mobil == null || mobil.isBlank()) {
             ra.addFlashAttribute("redirectMessage", "Skriv inn mobilnummer");
             return "redirect:/loginPage";
         }
 
-        // Foreløpig logger vi inn kun på mobil (navn hentes i HelloController)
-        loginUtil.loggInnBruker(request, mobil.trim(),"");
+        //Finner navn knyttet til mobilnummer
+        String ms = mobil.trim();
+        String username = repository.findById(ms)
+                .map(d -> d.getFornavn() + " " + d.getEtternavn())
+                .orElse(""); // evt. vis feilmelding hvis ikke finnes
 
+        loginUtil.loggInnBruker(request, ms, username);
         return "redirect:/deltagerliste";
     }
+
 
 
 

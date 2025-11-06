@@ -1,10 +1,12 @@
 package controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import model.Deltager;
 import model.DeltagerRepository;
 import model.Passord;
 import model.PassordService;
 import model.DeltagerValidator;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +55,15 @@ public class HelloController {
             return "paamelding_med_melding";
         }
 
+
+        if (repository.existsByMobil(mobil)) {
+            model.addAttribute("feilmelding", "Mobilnummer er allerede registrert!");
+            return "paamelding_med_melding";
+        }
+
+
+
+
         String salt = passordService.genererTilfeldigSalt();
         String hash = passordService.hashMedSalt(passord, salt);
 
@@ -67,17 +78,15 @@ public class HelloController {
         session.setAttribute("user_tlf", deltager.getMobil());
         session.setAttribute("user_navn", deltager.getFornavn() + " " + deltager.getEtternavn());
 
+        model.addAttribute("deltager", deltager);
+
         return "paameldt";
     }
 
 
     @GetMapping("/deltagerliste")
-    public String visListe(Model model, HttpSession session) {
-        if (!loginUtil.erBrukerInnlogget(session)) {
-            return "redirect:/login";
-        }
-
+    public String deltagerliste(Model model, HttpServletRequest request) {
         model.addAttribute("deltagere", repository.findAll());
-        return "deltagerliste";
+        return "deltagerliste"; // JSP: /WEB-INF/deltagerliste.jsp
     }
 }

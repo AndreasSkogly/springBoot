@@ -75,7 +75,7 @@
 
 	</table>
 
-    <form action="logout" method="post">
+    <form action="${pageContext.request.contextPath}/logout" method="post">
             <p><input width="20%" type="submit" value="Logg ut" /></p>
         </fieldset>
     </form>

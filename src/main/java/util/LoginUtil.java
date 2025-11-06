@@ -8,10 +8,15 @@ import jakarta.servlet.http.HttpSession;
 public class LoginUtil {
 
     public void loggInnBruker(HttpServletRequest request, String mobil, String username) {
-        HttpSession sesjon = request.getSession(true);
+        HttpSession old = request.getSession(false);
+        if (old != null) {
+            old.invalidate();              // kasta evt. gammel økt
+        }
+        HttpSession sesjon = request.getSession(true); // lag NY økt
+        request.changeSessionId();                     // roter JSESSIONID
         sesjon.setAttribute("user_tlf", mobil);
-        sesjon.setAttribute("user_navn", username); // kan være tom string ved login via mobil
-        sesjon.setMaxInactiveInterval(20 * 60); // 20 min
+        sesjon.setAttribute("user_navn", username == null ? "" : username);
+        sesjon.setMaxInactiveInterval(20 * 60);
     }
 
     public boolean erBrukerInnlogget(HttpSession session) {
@@ -24,3 +29,4 @@ public class LoginUtil {
         }
     }
 }
+

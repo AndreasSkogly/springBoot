@@ -9,7 +9,7 @@
 
 <h1>Logg Inn</h1>
 <p style="color:red">${redirectMessage}</p>
-<form action="login" method="post">
+<form action="${pageContext.request.contextPath}/loginPage/login" method="post">
     <fieldset>
         <label>Mobil:</label>
         <input type="text" name="mobil"/><br>
