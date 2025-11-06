@@ -16,7 +16,7 @@ public class Deltager {
     private String etternavn;
     private String kjonn;
 
-    public Deltager() {} // JPA trenger denne
+    public Deltager() {}
 
     public Deltager(String mobil, Passord passord, String fornavn, String etternavn, String kjonn) {
         this.mobil = mobil;

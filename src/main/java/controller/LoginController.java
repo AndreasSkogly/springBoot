@@ -9,6 +9,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import util.InputValidator;
 import util.LoginUtil;
 
+import model.Deltager;
+import model.DeltagerRepository;
+import model.Passord;
+import model.PassordService;
+
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/loginPage")
 public class LoginController {
@@ -19,37 +26,57 @@ public class LoginController {
     @Autowired
     private LoginUtil loginUtil;
 
+    @Autowired
+    private DeltagerRepository repository;
+
+    @Autowired
+    private PassordService passordService;
+
     @GetMapping
     public String visLoginSide() {
         return "loginPage";
     }
 
-    @Autowired
-    private model.DeltagerRepository repository;
-
     @PostMapping("/login")
     public String doLogin(@RequestParam(value="mobil", required=false) String mobil,
+                          @RequestParam(value="passord", required=false) String passord,
                           HttpServletRequest request,
                           RedirectAttributes ra) {
-        if (mobil == null || mobil.isBlank()) {
-            ra.addFlashAttribute("redirectMessage", "Skriv inn mobilnummer");
+
+        // Sjekk input
+        if (mobil == null || mobil.isBlank() || passord == null || passord.isBlank()) {
+            ra.addFlashAttribute("redirectMessage", "Skriv inn både mobilnummer og passord");
             return "redirect:/loginPage";
         }
 
-        //Finner navn knyttet til mobilnummer
-        String ms = mobil.trim();
-        String username = repository.findById(ms)
-                .map(d -> d.getFornavn() + " " + d.getEtternavn())
-                .orElse(""); // evt. vis feilmelding hvis ikke finnes
+        // behold kun siffer
+        String ms = mobil.replaceAll("\\D", "");
 
-        loginUtil.loggInnBruker(request, ms, username);
+
+
+        Optional<Deltager> opt = repository.findById(ms);
+        if (opt.isEmpty()) {
+            ra.addFlashAttribute("redirectMessage", "Bruker finnes ikke");
+            return "redirect:/loginPage";
+        }
+
+        Deltager d = opt.get();
+        Passord p = d.getPassord();
+
+
+        boolean riktig = passordService.erKorrektPassord(passord, p.getSalt(), p.getHash());
+        if (!riktig) {
+            ra.addFlashAttribute("redirectMessage", "Feil passord");
+            return "redirect:/loginPage";
+        }
+
+        String username = d.getFornavn() + " " + d.getEtternavn();
+        loginUtil.loggInnBruker(request, username, d.getMobil());
+
+        request.getSession().setAttribute("user_tlf", d.getMobil());
+        request.getSession().setAttribute("user_navn",
+                d.getFornavn() + " " + d.getEtternavn());
+
         return "redirect:/deltagerliste";
     }
-
-
-
-
-
-
-
 }

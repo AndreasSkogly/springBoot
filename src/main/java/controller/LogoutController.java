@@ -16,9 +16,7 @@ public class LogoutController {
     @Autowired
     private LoginUtil loginUtil;
 
-    /*
-     * POST /logout er forespørselen for å logge ut.
-     */
+
     @PostMapping
     public String loggUt(HttpSession session, RedirectAttributes ra) {
 

@@ -7,16 +7,16 @@ class DeltagerTester {
 
     private final DeltagerValidator validator = new DeltagerValidator();
 
-    private Passord dummyPassord() {
+   /* private Passord dummyPassord() {
         Passord p = new Passord();
         p.setSalt("1234ABCD1234ABCD1234ABCD1234ABCD");
         p.setHash("ABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDE");
         return p;
-    }
+    }*/
 
     @Test
     void testGyldigDeltager() {
-        Deltager d = new Deltager("12345678", dummyPassord(),
+        Deltager d = new Deltager("12345678", "passord123",
                 "Andreas", "Skogly", "Mann");
         assertTrue(validator.erGyldig(d), "Gyldig deltager skal gi true");
     }
@@ -35,13 +35,13 @@ class DeltagerTester {
         assertFalse(validator.erGyldig(d), "Mobilnummer med bokstaver skal gi false");
     }
 
-   /* @Test
+    @Test
     void testPassordMatcherIkke() {
         assertFalse(validator.passordMatcher("passord123", "passordet12323"),
                 "Passord som ikke matcher skal gi false");
         assertTrue(validator.passordMatcher("passord", "passord"),
                 "Like passord skal gi true");
-    }*/
+    }
 
     @Test
     void testNullVerdier() {

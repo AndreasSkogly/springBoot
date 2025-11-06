@@ -34,8 +34,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("deltager",
-                new Deltager("", new Passord(), "", "", ""));
+        model.addAttribute("deltager", new Deltager("", new Passord(), "", "", ""));
         return "paamelding_med_melding";
     }
 
@@ -62,8 +61,6 @@ public class HelloController {
         }
 
 
-
-
         String salt = passordService.genererTilfeldigSalt();
         String hash = passordService.hashMedSalt(passord, salt);
 
@@ -86,7 +83,7 @@ public class HelloController {
 
     @GetMapping("/deltagerliste")
     public String deltagerliste(Model model, HttpServletRequest request) {
-        model.addAttribute("deltagere", repository.findAll());
-        return "deltagerliste"; // JSP: /WEB-INF/deltagerliste.jsp
+        model.addAttribute("deltagere", repository.findAllByOrderByFornavnAsc());
+        return "deltagerliste";
     }
 }

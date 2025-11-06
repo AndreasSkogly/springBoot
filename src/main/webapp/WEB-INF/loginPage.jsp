@@ -12,7 +12,7 @@
 <form action="${pageContext.request.contextPath}/loginPage/login" method="post">
     <fieldset>
         <label>Mobil:</label>
-        <input type="text" name="mobil"/><br>
+        <input type="text" name="mobil" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,8);"/><br>
         <label>Passord:</label>
         <input type="password" name="passord"/> <br>
         <input type="submit" value="Logg inn"/><br>
