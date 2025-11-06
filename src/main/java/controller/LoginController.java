@@ -39,4 +39,10 @@ public class LoginController {
 
         return "redirect:/deltagerliste";
     }
+
+
+
+
+
+
 }

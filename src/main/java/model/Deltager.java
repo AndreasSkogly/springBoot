@@ -1,10 +1,13 @@
 package model;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+@Entity
+@Table(schema="deltager")
 public class Deltager {
-    private String mobil;
-    private String passord;
-    private String hash;
-    private String salt;
+    @Id private String mobil;
+    @Embedded private String passord;
     private String fornavn;
     private String etternavn;
     private String kjonn;
@@ -32,19 +35,5 @@ public class Deltager {
     public String getKjonn() { return kjonn; }
     public void setKjonn(String kjonn) { this.kjonn = kjonn; }
 
-    public String getSalt() {
-        return salt;
-    }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
 }

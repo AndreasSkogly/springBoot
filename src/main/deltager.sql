@@ -1,8 +1,0 @@
-CREATE TABLE deltager (
-    mobil CHARACTER (8) PRIMARY KEY,
-    hash CHARACTER (64) NOT NULL,
-    salt CHARACTER (32) NOT NULL,
-    fornavn CHARACTER VARYING (40),
-    etternavn CHARACTER VARYING (40),
-    kjonn CHARACTER VARYING (6)
-);
