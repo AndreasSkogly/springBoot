@@ -3,12 +3,13 @@ package springboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"controller", "springboot", "util", "model"})
+@ComponentScan(basePackages = {"springboot", "controller", "model", "util"})
+@EnableJpaRepositories(basePackages = "model")
+@EntityScan(basePackages = "model")
 public class MainApp {
     public static void main(String[] args) {
         SpringApplication.run(MainApp.class, args);

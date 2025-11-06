@@ -25,7 +25,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String doLogin(@RequestParam("mobil") String mobil,
+    public String doLogin(@RequestParam(value="mobil", required = false) String mobil,
                           HttpServletRequest request,
                           RedirectAttributes ra) {
 
