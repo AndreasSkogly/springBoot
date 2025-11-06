@@ -1,18 +1,17 @@
 package model;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
 @Table(schema="deltager")
 public class Deltager {
     @Id private String mobil;
-    @Embedded private String passord;
+    @Embedded private Passord passord;
     private String fornavn;
     private String etternavn;
     private String kjonn;
 
-    public Deltager(String mobil, String passord, String fornavn, String etternavn, String kjonn) {
+    public Deltager(String mobil, Passord passord, String fornavn, String etternavn, String kjonn) {
         this.mobil = mobil;
         this.passord = passord;
         this.fornavn = fornavn;
@@ -23,8 +22,8 @@ public class Deltager {
     public String getMobil() { return mobil; }
     public void setMobil(String mobil) { this.mobil = mobil; }
 
-    public String getPassord() { return passord; }
-    public void setPassord(String passord) { this.passord = passord; }
+    public Passord getPassord() { return passord; }
+    public void setPassord(Passord passord) { this.passord = passord; }
 
     public String getFornavn() { return fornavn; }
     public void setFornavn(String fornavn) { this.fornavn = fornavn; }

@@ -36,6 +36,12 @@
             <version>4.0.4</version>
         </dependency>
 
+        <!-- Postgres støtte -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
 
 
         <!-- JSP støtte -->
