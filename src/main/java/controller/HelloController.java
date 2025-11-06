@@ -18,7 +18,6 @@ public class HelloController {
     private final LoginUtil loginUtil;
     private final List<Deltager> deltagere = new ArrayList<>();
 
-    // ✅ Konstruktør-injeksjon for LoginUtil
     public HelloController(LoginUtil loginUtil) {
         this.loginUtil = loginUtil;
 
@@ -31,21 +30,21 @@ public class HelloController {
         deltagere.add(new Deltager("12321378", "passord6", "Xx-x", "Xxx", "Kvinne"));
     }
 
-    // 🏠 Forside – viser påmeldingsskjema
+    // Forside – viser påmeldingsskjema
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("deltager", new Deltager("", "", "", "", ""));
         return "paamelding_med_melding";
     }
 
-    // 📝 Håndterer innsending av påmeldingsskjema
+    // Håndterer innsending av påmeldingsskjema
     @PostMapping("/paameld")
     public String paameld(@ModelAttribute Deltager deltager,
                           @RequestParam String password_rep,
                           Model model,
                           HttpSession session) {
 
-        // Rens mobilnummer
+        // Tøm mobilnummer
         String mobil = deltager.getMobil() != null ? deltager.getMobil().replaceAll("\\D", "") : "";
 
         if (!mobil.matches("\\d{8}")) {
@@ -78,14 +77,14 @@ public class HelloController {
         deltagere.add(deltager);
         model.addAttribute("deltager", deltager);
 
-        // ✅ Sett innlogget bruker i session
+        //  Sett innlogget bruker i session
         session.setAttribute("user_tlf", deltager.getMobil());
         session.setAttribute("user_navn", deltager.getFornavn() + " " + deltager.getEtternavn());
 
         return "paameldt";
     }
 
-    // 📋 Viser deltagerliste (kun innloggede)
+    //  Viser deltagerliste (kun innloggede)
     @GetMapping("/deltagerliste")
     public String visDeltagerliste(Model model, HttpSession session) {
         // Hvis ikke innlogget, redirect til login
