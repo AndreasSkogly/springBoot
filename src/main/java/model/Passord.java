@@ -3,9 +3,12 @@ package model;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Passord{
+public class Passord {
+
     private String hash;
     private String salt;
+
+    public Passord() {}
 
     public String getHash() {
         return hash;

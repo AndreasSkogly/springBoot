@@ -35,7 +35,7 @@ public class LoginController {
         }
 
         // Foreløpig logger vi inn kun på mobil (navn hentes i HelloController)
-        loginUtil.loggInnBruker(request, /*username*/ "", mobil.trim());
+        loginUtil.loggInnBruker(request, mobil.trim(),"");
 
         return "redirect:/deltagerliste";
     }

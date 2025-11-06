@@ -3,13 +3,20 @@ package model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(schema="deltager")
+@Table(name="deltager")
 public class Deltager {
-    @Id private String mobil;
-    @Embedded private Passord passord;
+
+    @Id
+    private String mobil;
+
+    @Embedded
+    private Passord passord;
+
     private String fornavn;
     private String etternavn;
     private String kjonn;
+
+    public Deltager() {} // JPA trenger denne
 
     public Deltager(String mobil, Passord passord, String fornavn, String etternavn, String kjonn) {
         this.mobil = mobil;
@@ -19,20 +26,43 @@ public class Deltager {
         this.kjonn = kjonn;
     }
 
-    public String getMobil() { return mobil; }
-    public void setMobil(String mobil) { this.mobil = mobil; }
+    public String getMobil() {
+        return mobil;
+    }
 
-    public Passord getPassord() { return passord; }
-    public void setPassord(Passord passord) { this.passord = passord; }
+    public void setMobil(String mobil) {
+        this.mobil = mobil;
+    }
 
-    public String getFornavn() { return fornavn; }
-    public void setFornavn(String fornavn) { this.fornavn = fornavn; }
+    public Passord getPassord() {
+        return passord;
+    }
 
-    public String getEtternavn() { return etternavn; }
-    public void setEtternavn(String etternavn) { this.etternavn = etternavn; }
+    public void setPassord(Passord passord) {
+        this.passord = passord;
+    }
 
-    public String getKjonn() { return kjonn; }
-    public void setKjonn(String kjonn) { this.kjonn = kjonn; }
+    public String getFornavn() {
+        return fornavn;
+    }
 
+    public void setFornavn(String fornavn) {
+        this.fornavn = fornavn;
+    }
 
+    public String getEtternavn() {
+        return etternavn;
+    }
+
+    public void setEtternavn(String etternavn) {
+        this.etternavn = etternavn;
+    }
+
+    public String getKjonn() {
+        return kjonn;
+    }
+
+    public void setKjonn(String kjonn) {
+        this.kjonn = kjonn;
+    }
 }
