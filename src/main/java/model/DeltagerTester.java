@@ -7,16 +7,16 @@ class DeltagerTester {
 
     private final DeltagerValidator validator = new DeltagerValidator();
 
-   /* private Passord dummyPassord() {
+    private Passord dummyPassord() {
         Passord p = new Passord();
         p.setSalt("1234ABCD1234ABCD1234ABCD1234ABCD");
         p.setHash("ABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDE");
         return p;
-    }*/
+    }
 
     @Test
     void testGyldigDeltager() {
-        Deltager d = new Deltager("12345678", "passord123",
+        Deltager d = new Deltager("12345678", dummyPassord(),
                 "Andreas", "Skogly", "Mann");
         assertTrue(validator.erGyldig(d), "Gyldig deltager skal gi true");
     }
