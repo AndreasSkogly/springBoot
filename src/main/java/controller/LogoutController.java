@@ -16,7 +16,7 @@ public class LogoutController {
     @Autowired
     private LoginUtil loginUtil;
 
-
+    // Vi kunne egentlig hatt denne i LoginController, men valgte å bare ha den her for oversikt.
     @PostMapping
     public String loggUt(HttpSession session, RedirectAttributes ra) {
 

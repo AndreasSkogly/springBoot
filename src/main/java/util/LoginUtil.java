@@ -10,10 +10,10 @@ public class LoginUtil {
     public void loggInnBruker(HttpServletRequest request, String mobil, String username) {
         HttpSession old = request.getSession(false);
         if (old != null) {
-            old.invalidate();              // kasta evt. gammel økt
+            old.invalidate();
         }
-        HttpSession sesjon = request.getSession(true); // lag NY økt
-        request.changeSessionId();                     // roter JSESSIONID
+        HttpSession sesjon = request.getSession(true);
+        request.changeSessionId();
         sesjon.setAttribute("user_tlf", mobil);
         sesjon.setAttribute("user_navn", username == null ? "" : username);
         sesjon.setMaxInactiveInterval(20 * 60);

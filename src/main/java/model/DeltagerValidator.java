@@ -7,7 +7,6 @@ public class DeltagerValidator {
         if (d.getFornavn() == null || d.getFornavn().length() < 2) return false;
         if (d.getEtternavn() == null || d.getEtternavn().length() < 2) return false;
         if (d.getMobil() == null || !d.getMobil().matches("\\d{8}")) return false;
-
         if (d.getKjonn() == null ||
                 !(d.getKjonn().equalsIgnoreCase("Mann") ||
                         d.getKjonn().equalsIgnoreCase("Kvinne"))) return false;

@@ -43,13 +43,13 @@ public class LoginController {
                           HttpServletRequest request,
                           RedirectAttributes ra) {
 
-        // Sjekk input
+        // Sjekk input om mobilnummer og passord er skrevet inn når en skal logge inn igjen på brukeren sin
         if (mobil == null || mobil.isBlank() || passord == null || passord.isBlank()) {
             ra.addFlashAttribute("redirectMessage", "Skriv inn både mobilnummer og passord");
             return "redirect:/loginPage";
         }
 
-        // behold kun siffer
+        // behold kun siffer, fjerner unødvendige mellomrom og diverse
         String ms = mobil.replaceAll("\\D", "");
 
 

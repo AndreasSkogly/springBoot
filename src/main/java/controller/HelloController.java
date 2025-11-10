@@ -32,12 +32,15 @@ public class HelloController {
 
     }
 
+    // Startsiden
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("deltager", new Deltager("", new Passord(), "", "", ""));
         return "paamelding_med_melding";
     }
 
+
+    // Skjema for deltagerpåmelding som verifiserer alt og sender videre
     @PostMapping("/paameld")
     public String paameld(
             @RequestParam("fornavn") String fornavn,
@@ -49,18 +52,19 @@ public class HelloController {
             Model model,
             HttpSession session) {
 
+        // Sjekk for at passord bekreftelse matcher original passord
         if (!passord.equals(passordRep)) {
             model.addAttribute("feilmelding", "Passordene samsvarer ikke!");
             return "paamelding_med_melding";
         }
 
-
+        // Sjekker om mobilnummer allerede er registrert i databasen vår
         if (repository.existsByMobil(mobil)) {
             model.addAttribute("feilmelding", "Mobilnummer er allerede registrert!");
             return "paamelding_med_melding";
         }
 
-
+        // Under her genererer den salt og hask til passordet og lagrer alt i databasen
         String salt = passordService.genererTilfeldigSalt();
         String hash = passordService.hashMedSalt(passord, salt);
 
@@ -81,6 +85,7 @@ public class HelloController {
     }
 
 
+    // Fra paameldt til deltagerliste mapping
     @GetMapping("/deltagerliste")
     public String deltagerliste(Model model, HttpServletRequest request) {
         model.addAttribute("deltagere", repository.findAllByOrderByFornavnAsc());

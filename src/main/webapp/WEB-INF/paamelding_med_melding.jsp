@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<%--    <meta charset="UTF-8">--%>
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/simple.css">
 
 
@@ -12,16 +12,22 @@
 
 
 	<title>Påmelding</title>
+
 </head>
 
 <body>
+
 <h2>Påmelding</h2>
 <c:choose>
 <c:when test="${not empty feilmelding}">
+
 <p id="ugyldig_paamelding" style="color:red;">${feilmelding}</p>
+
 </c:when>
     <c:when test="password !== password_rep">
+
         <p id="ugyldig_paamelding" style="color:red;">Passordet samsvarer ikke!</p>
+
     </c:when>
 </c:choose>
 

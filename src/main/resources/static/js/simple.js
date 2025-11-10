@@ -14,8 +14,7 @@ const ugyldig_paamelding = document.getElementById("ugyldig_paamelding");
 const reg_mobilnumre = {mobilnumre};
 
 // vi vet at vi har alt for mange pekere som ikke gjør noen ting. :)
-
-
+// Vi begynte å prøve å løse koden med js da mye av dette var nytt for oss. Så mye av dette har ingen hensikt.
 
 
 
