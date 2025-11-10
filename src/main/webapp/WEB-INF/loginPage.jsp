@@ -8,6 +8,7 @@
 
 <h1>Logg Inn</h1>
 <p style="color:red">${redirectMessage}</p>
+
 <form action="${pageContext.request.contextPath}/loginPage/login" method="post">
     <fieldset>
         <label>Mobil:</label>

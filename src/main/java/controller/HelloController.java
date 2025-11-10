@@ -64,6 +64,12 @@ public class HelloController {
             return "paamelding_med_melding";
         }
 
+        // Bekrefter at tlf nummer må være 8 siffer, vi hadde det egentlig i .jsp filen, men den stoppet å funke.
+        if (!mobil.matches("\\d{8}")){
+            model.addAttribute("feilmelding", "Mobilnummer må være 8 siffer");
+            return "paamelding_med_melding";
+        }
+
         // Under her genererer den salt og hask til passordet og lagrer alt i databasen
         String salt = passordService.genererTilfeldigSalt();
         String hash = passordService.hashMedSalt(passord, salt);
@@ -88,6 +94,17 @@ public class HelloController {
     // Fra paameldt til deltagerliste mapping
     @GetMapping("/deltagerliste")
     public String deltagerliste(Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+
+        if (!LoginUtil.erBrukerInnlogget(session)) {
+            if (session == null) {
+                session = request.getSession(true);
+            }
+            session.setAttribute("redirectMessage", "Du må logge inn for å se deltagerlisten!");
+            return "redirect:/loginPage";
+        }
+
         model.addAttribute("deltagere", repository.findAllByOrderByFornavnAsc());
         return "deltagerliste";
     }

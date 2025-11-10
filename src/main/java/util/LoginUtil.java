@@ -19,7 +19,7 @@ public class LoginUtil {
         sesjon.setMaxInactiveInterval(20 * 60);
     }
 
-    public boolean erBrukerInnlogget(HttpSession session) {
+    public static boolean erBrukerInnlogget(HttpSession session) {
         return session != null && session.getAttribute("user_tlf") != null;
     }
 
